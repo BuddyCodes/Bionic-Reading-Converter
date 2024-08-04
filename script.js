@@ -9,4 +9,17 @@ function convertToBionicReading() {
     document.getElementById('output').innerHTML = output;
 }
 
-//need to make the font more standardized established bionic????
+function copyBionicText() {
+    const outputText = document.getElementById('output').innerText;
+    navigator.clipboard.writeText(outputText).then(() => {
+        const copyButton = document.getElementById('copy-button');
+        copyButton.textContent = 'Copied';
+        setTimeout(() => {
+            copyButton.textContent = 'Copy';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
+}
+
+document.getElementById('copy-button').addEventListener('click', copyBionicText);
